@@ -86,11 +86,23 @@ const calcTotalPages = (): bigint => {
   return result;
 };
 
+const createCustomerID = (name: string, id: number): string => {
+  return `${name}-${id}`;
+};
+
 // ========================================
-// Task 02.01.
-logFirstAvailable(getAllBooks());
-logBookTitles(getBookTitlesByCategory(Category.JavaScript));
-logBookTitles(getBookTitlesByCategory(Category.CSS));
-logBookTitles(getBookTitlesByCategory(Category.Angular));
-console.log(getBookAuthorByIndex(1));
-console.log(calcTotalPages());
+// Task 02.01
+// logFirstAvailable(getAllBooks());
+// logBookTitles(getBookTitlesByCategory(Category.JavaScript));
+// logBookTitles(getBookTitlesByCategory(Category.CSS));
+// logBookTitles(getBookTitlesByCategory(Category.Angular));
+// console.log(getBookAuthorByIndex(1));
+// console.log(calcTotalPages());
+
+// Task 03.01
+const myID: string = createCustomerID('Ann', 10);
+console.log(myID);
+let idGenerator: (name: string, id: number) => string;
+idGenerator = (name: string, id: number) => `${name}-${id}`;
+idGenerator = createCustomerID;
+console.log(idGenerator('Tom', 21));
