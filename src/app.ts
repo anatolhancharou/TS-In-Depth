@@ -1,3 +1,4 @@
+/* eslint-disable no-redeclare */
 showHello('greeting', 'TypeScript');
 
 function showHello(divName: string, name: string) {
@@ -110,6 +111,27 @@ const checkoutBooks = (customer: string, ...bookIDs: number[]): string[] => {
     .map(book => book.title);
 };
 
+function getTitles(author: string): string[];
+function getTitles(available: boolean): string[];
+function getTitles(id: number, available: boolean): string[];
+function getTitles(...args: any[]): string[] {
+  const books = getAllBooks();
+
+  if (args.length === 1) {
+    const [arg] = args;
+    if (typeof arg === 'string') {
+      return books.filter(({ author }) => author === arg).map(({ title }) => title);
+    } else if (typeof arg === 'boolean') {
+      return books.filter(({ available }) => available === arg).map(({ title }) => title);
+    }
+  } else if (args.length === 2) {
+    const [argId, argAvailable] = args;
+    if (typeof argId === 'number' && typeof argAvailable === 'boolean') {
+      return books.filter(({ id, available }) => id === argId && available === argAvailable).map(({ title }) => title);
+    }
+  }
+}
+
 // ========================================
 // Task 02.01
 // logFirstAvailable(getAllBooks());
@@ -128,11 +150,14 @@ const checkoutBooks = (customer: string, ...bookIDs: number[]): string[] => {
 // console.log(idGenerator('Tom', 21));
 
 // Task 03.02
-const customer1 = createCustomer('Alex');
-const customer2 = createCustomer('Olia', 23);
-const customer4 = createCustomer('Bogdan', 23, 'Kiyv');
-console.log(getBookTitlesByCategory());
-logFirstAvailable();
-console.log(getBookByID(1));
-const myBooks: string[] = checkoutBooks('Ann', 1, 2, 4);
-console.log(myBooks);
+// const customer1 = createCustomer('Alex');
+// const customer2 = createCustomer('Olia', 23);
+// const customer4 = createCustomer('Bogdan', 23, 'Kiyv');
+// console.log(getBookTitlesByCategory());
+// logFirstAvailable();
+// console.log(getBookByID(1));
+// const myBooks: string[] = checkoutBooks('Ann', ...[1, 2, 4]);
+// console.log(myBooks);
+
+// Task 03.03
+console.log(getTitles(false));
