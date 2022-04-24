@@ -37,6 +37,20 @@ interface IDamageLogger {
   (reason: string): void;
 }
 
+interface IPerson {
+  name: string;
+  email: string;
+}
+
+interface IAuthor extends IPerson {
+  numBooksPublished: number;
+}
+
+interface ILibrarian extends IPerson {
+  department: string;
+  assistCustomer: (custName: string, bookTitle: string) => void;
+}
+
 const getAllBooks = (): readonly IBook[] => {
   const books = <const>[
     {
@@ -211,5 +225,21 @@ const printBook = (book: IBook): void => {
 // myBook.markDamaged('missing back cover');
 
 // Task 04.02
-const logDamage: IDamageLogger = (reason: string) => console.log(`Damaged: ${reason}`);
-logDamage('missing back cover');
+// const logDamage: IDamageLogger = (reason: string) => console.log(`Damaged: ${reason}`);
+// logDamage('missing back cover');
+
+// Task 04.03
+const favouriteAuthor: IAuthor = {
+  name: 'Patrick Rothfuss',
+  email: 'prothfuss@example.com',
+  numBooksPublished: 4,
+};
+const favouriteLibrarian: ILibrarian = {
+  name: 'Jessica Thompson',
+  email: 'jest@example.com',
+  department: 'Magic & Fantasy',
+  assistCustomer(custName: string, bookTitle: string) {
+    console.log(custName);
+    console.log(bookTitle);
+  },
+};
