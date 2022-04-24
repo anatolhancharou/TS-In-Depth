@@ -22,7 +22,18 @@ type TBook = {
   category: Category;
 };
 
-const getAllBooks = (): readonly TBook[] => {
+interface IBook {
+  id: number;
+  title: string;
+  author: string;
+  available: boolean;
+  category: Category;
+  pages?: number;
+  markDamaged?(reason: string): void;
+  // markDamaged?: (reason: string) => void;
+}
+
+const getAllBooks = (): readonly IBook[] => {
   const books = <const>[
     {
       id: 1,
@@ -97,7 +108,7 @@ const createCustomer = (name: string, age?: number, city?: string): void => {
   if (city) console.log(`Customer's city: ${city}`);
 };
 
-const getBookByID = (id: TBook['id']): TBook => {
+const getBookByID = (id: IBook['id']): IBook | undefined => {
   const books = getAllBooks();
   return books.find(book => book.id === id);
 };
@@ -144,6 +155,10 @@ const bookTitleTransform = (title: any): string | never => {
   return [...title].reverse().join('');
 };
 
+const printBook = (book: IBook): void => {
+  console.log(`${book.title} by ${book.author}`);
+};
+
 // ========================================
 // Task 02.01
 // logFirstAvailable(getAllBooks());
@@ -175,5 +190,20 @@ const bookTitleTransform = (title: any): string | never => {
 // console.log(getTitles(false));
 
 // Task 03.04
-console.log(bookTitleTransform('TypeScript'));
-console.log(bookTitleTransform(42));
+// console.log(bookTitleTransform('TypeScript'));
+// console.log(bookTitleTransform(42));
+
+// Task 04.01
+const myBook: IBook = {
+  id: 5,
+  title: 'Colors, Backgrounds, and Gradients',
+  author: 'Eric A. Meyer',
+  available: true,
+  category: Category.CSS,
+  pages: 200,
+  markDamaged: (reason: string) => console.log(`Damaged: ${reason}`),
+  // year: 2015,
+  // copies: 3
+};
+printBook(myBook);
+myBook.markDamaged('missing back cover');
