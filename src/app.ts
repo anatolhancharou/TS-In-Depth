@@ -22,6 +22,8 @@ type TBook = {
   category: Category;
 };
 
+type TBookProperties = keyof IBook;
+
 interface IBook {
   id: number;
   title: string;
@@ -177,6 +179,11 @@ const printBook = (book: IBook): void => {
   console.log(`${book.title} by ${book.author}`);
 };
 
+const getProperty = (book: IBook, prop: TBookProperties): any => {
+  const value = book[prop];
+  return typeof value === 'function' ? value.name : value;
+};
+
 // ========================================
 // Task 02.01
 // logFirstAvailable(getAllBooks());
@@ -229,17 +236,34 @@ const printBook = (book: IBook): void => {
 // logDamage('missing back cover');
 
 // Task 04.03
-const favouriteAuthor: IAuthor = {
-  name: 'Patrick Rothfuss',
-  email: 'prothfuss@example.com',
-  numBooksPublished: 4,
-};
-const favouriteLibrarian: ILibrarian = {
-  name: 'Jessica Thompson',
-  email: 'jest@example.com',
-  department: 'Magic & Fantasy',
-  assistCustomer(custName: string, bookTitle: string) {
-    console.log(custName);
-    console.log(bookTitle);
+// const favouriteAuthor: IAuthor = {
+//   name: 'Patrick Rothfuss',
+//   email: 'prothfuss@example.com',
+//   numBooksPublished: 4,
+// };
+// const favouriteLibrarian: ILibrarian = {
+//   name: 'Jessica Thompson',
+//   email: 'jest@example.com',
+//   department: 'Magic & Fantasy',
+//   assistCustomer(custName: string, bookTitle: string) {
+//     console.log(custName);
+//     console.log(bookTitle);
+//   },
+// };
+
+// Task 04.04
+const offer: any = {
+  book: {
+    title: 'Essential TypeScript',
   },
 };
+
+console.log(offer.magazine);
+console.log(offer.magazine?.getTitle());
+console.log(offer.book.getTitle?.());
+console.log(offer.book.authors?.[0]);
+
+// Task 04.05
+console.log(getProperty(getAllBooks()[0], 'title'));
+console.log(getProperty(getAllBooks()[0], 'markDamaged'));
+// console.log(getProperty(getAllBooks()[0], 'isbn'));
