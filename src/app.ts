@@ -29,8 +29,12 @@ interface IBook {
   available: boolean;
   category: Category;
   pages?: number;
-  markDamaged?(reason: string): void;
-  // markDamaged?: (reason: string) => void;
+  markDamaged?: IDamageLogger;
+  // markDamaged?(reason: string): void;
+}
+
+interface IDamageLogger {
+  (reason: string): void;
 }
 
 const getAllBooks = (): readonly IBook[] => {
@@ -194,16 +198,18 @@ const printBook = (book: IBook): void => {
 // console.log(bookTitleTransform(42));
 
 // Task 04.01
-const myBook: IBook = {
-  id: 5,
-  title: 'Colors, Backgrounds, and Gradients',
-  author: 'Eric A. Meyer',
-  available: true,
-  category: Category.CSS,
-  pages: 200,
-  markDamaged: (reason: string) => console.log(`Damaged: ${reason}`),
-  // year: 2015,
-  // copies: 3
-};
-printBook(myBook);
-myBook.markDamaged('missing back cover');
+// const myBook: IBook = {
+//   id: 5,
+//   title: 'Colors, Backgrounds, and Gradients',
+//   author: 'Eric A. Meyer',
+//   available: true,
+//   category: Category.CSS,
+//   pages: 200,
+//   markDamaged: (reason: string) => console.log(`Damaged: ${reason}`),
+// };
+// printBook(myBook);
+// myBook.markDamaged('missing back cover');
+
+// Task 04.02
+const logDamage: IDamageLogger = (reason: string) => console.log(`Damaged: ${reason}`);
+logDamage('missing back cover');
