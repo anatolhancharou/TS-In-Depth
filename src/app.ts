@@ -132,6 +132,18 @@ function getTitles(...args: any[]): string[] {
   }
 }
 
+function assertStringValue(value: any): asserts value is string {
+  if (typeof value !== 'string') {
+    throw new Error('value should have been a string');
+  }
+}
+
+const bookTitleTransform = (title: any): string | never => {
+  assertStringValue(title);
+
+  return [...title].reverse().join('');
+};
+
 // ========================================
 // Task 02.01
 // logFirstAvailable(getAllBooks());
@@ -160,4 +172,8 @@ function getTitles(...args: any[]): string[] {
 // console.log(myBooks);
 
 // Task 03.03
-console.log(getTitles(false));
+// console.log(getTitles(false));
+
+// Task 03.04
+console.log(bookTitleTransform('TypeScript'));
+console.log(bookTitleTransform(42));
