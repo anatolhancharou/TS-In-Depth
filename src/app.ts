@@ -184,7 +184,7 @@ const getProperty = (book: IBook, prop: TBookProperties): any => {
   return typeof value === 'function' ? value.name : value;
 };
 
-class ReferenceItem {
+abstract class ReferenceItem {
   // title: string;
   // year: number;
 
@@ -222,6 +222,8 @@ class ReferenceItem {
   getID(): number {
     return this.#id;
   }
+
+  abstract printCitation(): void;
 }
 
 class Encyclopedia extends ReferenceItem {
@@ -232,6 +234,10 @@ class Encyclopedia extends ReferenceItem {
   override printItem(): void {
     super.printItem();
     console.log(`Edition: ${this.edition} (${this.year})`);
+  }
+
+  printCitation(): void {
+    console.log(`${this.title} - ${this.year}`);
   }
 }
 
@@ -328,6 +334,10 @@ class Encyclopedia extends ReferenceItem {
 // console.log(ref.getID());
 
 // Task 05.02
+// const refBook = new Encyclopedia(42, 'Learn TypeScript', 2022, 2);
+// console.log(refBook);
+// refBook.printItem();
+
+// Task 05.03
 const refBook = new Encyclopedia(42, 'Learn TypeScript', 2022, 2);
-console.log(refBook);
-refBook.printItem();
+refBook.printCitation();
