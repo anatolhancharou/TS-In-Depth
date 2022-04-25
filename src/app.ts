@@ -241,6 +241,16 @@ class Encyclopedia extends ReferenceItem {
   }
 }
 
+class UniversityLibrarian implements ILibrarian {
+  name: string;
+  email: string;
+  department: string;
+
+  assistCustomer(custName: string, bookTitle: string): void {
+    console.log(`${this.name} is assisting ${custName} with the book ${bookTitle}`);
+  }
+}
+
 // ========================================
 // Task 02.01
 // logFirstAvailable(getAllBooks());
@@ -339,5 +349,10 @@ class Encyclopedia extends ReferenceItem {
 // refBook.printItem();
 
 // Task 05.03
-const refBook = new Encyclopedia(42, 'Learn TypeScript', 2022, 2);
-refBook.printCitation();
+// const refBook = new Encyclopedia(42, 'Learn TypeScript', 2022, 2);
+// refBook.printCitation();
+
+// Task 05.04
+const favouriteLibrarian: ILibrarian = new UniversityLibrarian();
+favouriteLibrarian.name = 'Emma';
+favouriteLibrarian.assistCustomer('Nicolas Flamel', 'Philosopher\'s stone');
