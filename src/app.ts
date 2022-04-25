@@ -200,7 +200,7 @@ class ReferenceItem {
 
   static department: string = 'Research Department';
 
-  constructor(id: number, public title: string, private year: number) {
+  constructor(id: number, public title: string, protected year: number) {
     console.log('Creating a new ReferenceItem...');
     this.#id = id;
   }
@@ -221,6 +221,17 @@ class ReferenceItem {
 
   getID(): number {
     return this.#id;
+  }
+}
+
+class Encyclopedia extends ReferenceItem {
+  constructor(id: number, title: string, year: number, public edition: number) {
+    super(id, title, year);
+  }
+
+  override printItem(): void {
+    super.printItem();
+    console.log(`Edition: ${this.edition} (${this.year})`);
   }
 }
 
@@ -309,9 +320,14 @@ class ReferenceItem {
 // console.log(getProperty(getAllBooks()[0], 'isbn'));
 
 // Task 05.01
-const ref = new ReferenceItem(42, 'Learn TypeScript', 2022);
-console.log(ref);
-ref.printItem();
-ref.publisher = 'Scholastic';
-console.log(ref.publisher);
-console.log(ref.getID());
+// const ref = new ReferenceItem(42, 'Learn TypeScript', 2022);
+// console.log(ref);
+// ref.printItem();
+// ref.publisher = 'Scholastic';
+// console.log(ref.publisher);
+// console.log(ref.getID());
+
+// Task 05.02
+const refBook = new Encyclopedia(42, 'Learn TypeScript', 2022, 2);
+console.log(refBook);
+refBook.printItem();
