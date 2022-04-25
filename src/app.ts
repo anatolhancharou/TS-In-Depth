@@ -24,6 +24,10 @@ type TBook = {
 
 type TBookProperties = keyof IBook;
 
+type TPersonBook = IPerson & IBook;
+
+type TBookOrUndefined = IBook | undefined;
+
 interface IBook {
   id: number;
   title: string;
@@ -51,6 +55,11 @@ interface IAuthor extends IPerson {
 interface ILibrarian extends IPerson {
   department: string;
   assistCustomer: (custName: string, bookTitle: string) => void;
+}
+
+interface IOptions {
+  duration?: number;
+  speed?: number;
 }
 
 const getAllBooks = (): readonly IBook[] => {
@@ -128,7 +137,7 @@ const createCustomer = (name: string, age?: number, city?: string): void => {
   if (city) console.log(`Customer's city: ${city}`);
 };
 
-const getBookByID = (id: IBook['id']): IBook | undefined => {
+const getBookByID = (id: IBook['id']): TBookOrUndefined => {
   const books = getAllBooks();
   return books.find(book => book.id === id);
 };
@@ -182,6 +191,12 @@ const printBook = (book: IBook): void => {
 const getProperty = (book: IBook, prop: TBookProperties): any => {
   const value = book[prop];
   return typeof value === 'function' ? value.name : value;
+};
+
+const setDefaultConfig = (options: IOptions): IOptions => {
+  options.duration ??= 100;
+  options.speed ??= 50;
+  return options;
 };
 
 abstract class ReferenceItem {
@@ -353,6 +368,20 @@ class UniversityLibrarian implements ILibrarian {
 // refBook.printCitation();
 
 // Task 05.04
-const favouriteLibrarian: ILibrarian = new UniversityLibrarian();
-favouriteLibrarian.name = 'Emma';
-favouriteLibrarian.assistCustomer('Nicolas Flamel', 'Philosopher\'s stone');
+// const favouriteLibrarian: ILibrarian = new UniversityLibrarian();
+// favouriteLibrarian.name = 'Emma';
+// favouriteLibrarian.assistCustomer('Nicolas Flamel', 'Philosopher\'s stone');
+
+// Task 05.05
+const personBook: TPersonBook = {
+  id: 1,
+  author: 'Jessica',
+  category: Category.TypeScript,
+  available: true,
+  email: 'jess@example.com',
+  name: 'Jessica',
+  title: 'Learn TypeScript'
+};
+let o: IOptions = { speed: 55 };
+o = setDefaultConfig(o);
+console.log(o);
