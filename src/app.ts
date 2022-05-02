@@ -131,3 +131,20 @@ function showHello(divName: string, name: string) {
 // let o: IOptions = { speed: 55 };
 // o = setDefaultConfig(o);
 // console.log(o);
+
+// Task 06.05
+const flag = true;
+if (flag) {
+  import('./classes')
+    .then(module => {
+      const reader = new module.Reader();
+      console.log(reader);
+    })
+    .catch(err => console.log(err));
+}
+
+if (flag) {
+  const module = await import('./classes');
+  const reader = new module.Reader();
+  console.log(reader);
+}
