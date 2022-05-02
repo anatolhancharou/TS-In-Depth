@@ -32,7 +32,7 @@ abstract class ReferenceItem {
   printItem(): void {
     console.log(`${this.title} was published in ${this.year}`);
     console.log(`Department: ${ReferenceItem.department}`);
-    console.log(`Department: ${Object.getPrototypeOf(this).constructor.department}`);
+    // console.log(`Department: ${Object.getPrototypeOf(this).constructor.department}`);
   }
 
   getID(): number {

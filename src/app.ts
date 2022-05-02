@@ -1,29 +1,15 @@
-import { ReferenceItem } from './classes';
 import { Category } from './enums';
-import { setDefaultConfig } from './functions';
-import { ILogger, IOptions } from './interfaces';
+import { printRefBook, setDefaultConfig } from './functions';
+import { ILibrarian, ILogger, IOptions } from './interfaces';
 import { TPersonBook } from './types';
+import RefBook from './encyclopedia';
+import { UniversityLibrarian } from './classes';
 
 showHello('greeting', 'TypeScript');
 
 function showHello(divName: string, name: string) {
   const elt = document.getElementById(divName);
   elt.innerText = `Hello from ${name}`;
-}
-
-class Encyclopedia extends ReferenceItem {
-  constructor(id: number, title: string, year: number, public edition: number) {
-    super(id, title, year);
-  }
-
-  override printItem(): void {
-    super.printItem();
-    console.log(`Edition: ${this.edition} (${this.year})`);
-  }
-
-  printCitation(): void {
-    console.log(`${this.title} - ${this.year}`);
-  }
 }
 
 // ========================================
@@ -74,8 +60,8 @@ class Encyclopedia extends ReferenceItem {
 // myBook.markDamaged('missing back cover');
 
 // Task 04.02
-const logDamage: ILogger = (reason: string) => console.log(`Damaged: ${reason}`);
-logDamage('missing back cover');
+// const logDamage: ILogger = (reason: string) => console.log(`Damaged: ${reason}`);
+// logDamage('missing back cover');
 
 // Task 04.03
 // const favouriteAuthor: IAuthor = {
@@ -118,14 +104,15 @@ logDamage('missing back cover');
 // console.log(ref.publisher);
 // console.log(ref.getID());
 
-// Task 05.02
-// const refBook = new Encyclopedia(42, 'Learn TypeScript', 2022, 2);
+// Task 05.02, 05.03, 06.03
+const refBook = new RefBook(42, 'Learn TypeScript', 2022, 2);
 // console.log(refBook);
 // refBook.printItem();
-
-// Task 05.03
-// const refBook = new Encyclopedia(42, 'Learn TypeScript', 2022, 2);
 // refBook.printCitation();
+printRefBook(refBook);
+const favouriteLibrarian: ILibrarian = new UniversityLibrarian();
+favouriteLibrarian.name = 'Emma';
+printRefBook(favouriteLibrarian);
 
 // Task 05.04
 // const favouriteLibrarian: ILibrarian = new UniversityLibrarian();
@@ -140,7 +127,7 @@ const personBook: TPersonBook = {
   available: true,
   email: 'jess@example.com',
   name: 'Jessica',
-  title: 'Learn TypeScript'
+  title: 'Learn TypeScript',
 };
 let o: IOptions = { speed: 55 };
 o = setDefaultConfig(o);

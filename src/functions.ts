@@ -1,6 +1,7 @@
 import { Category } from './enums';
 import { IBook, IOptions } from './interfaces';
 import { TBookOrUndefined, TBookProperties } from './types';
+import RefBook from './encyclopedia';
 
 export const getAllBooks = (): readonly IBook[] => {
   const books = <const>[
@@ -118,6 +119,12 @@ export function assertStringValue(value: any): asserts value is string {
   }
 }
 
+export function assertRefBookInstance(condiditon: any): asserts condiditon {
+  if (!condiditon) {
+    throw new Error('It is not an instance of RefBook');
+  }
+}
+
 export const bookTitleTransform = (title: any): string | never => {
   assertStringValue(title);
   return [...title].reverse().join('');
@@ -136,4 +143,9 @@ export const setDefaultConfig = (options: IOptions): IOptions => {
   options.duration ??= 100;
   options.speed ??= 50;
   return options;
+};
+
+export const printRefBook = (data: any): void => {
+  assertRefBookInstance(data instanceof RefBook);
+  data.printItem();
 };
