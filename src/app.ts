@@ -2,8 +2,7 @@ import { Category } from './enums';
 import { printRefBook, setDefaultConfig } from './functions';
 import { ILibrarian, ILogger, IOptions } from './interfaces';
 import { TPersonBook } from './types';
-import RefBook from './encyclopedia';
-import { UniversityLibrarian } from './classes';
+import { RefBook, UL } from './classes';
 
 showHello('greeting', 'TypeScript');
 
@@ -105,30 +104,30 @@ function showHello(divName: string, name: string) {
 // console.log(ref.getID());
 
 // Task 05.02, 05.03, 06.03
-const refBook = new RefBook(42, 'Learn TypeScript', 2022, 2);
+// const refBook = new RefBook(42, 'Learn TypeScript', 2022, 2);
 // console.log(refBook);
 // refBook.printItem();
 // refBook.printCitation();
-printRefBook(refBook);
-const favouriteLibrarian: ILibrarian = new UniversityLibrarian();
-favouriteLibrarian.name = 'Emma';
-printRefBook(favouriteLibrarian);
+// printRefBook(refBook);
+// const favouriteLibrarian: ILibrarian = new UL.UniversityLibrarian();
+// favouriteLibrarian.name = 'Emma';
+// printRefBook(favouriteLibrarian);
 
 // Task 05.04
-// const favouriteLibrarian: ILibrarian = new UniversityLibrarian();
+// const favouriteLibrarian: ILibrarian = new UL.UniversityLibrarian();
 // favouriteLibrarian.name = 'Emma';
 // favouriteLibrarian.assistCustomer('Nicolas Flamel', 'Philosopher\'s stone');
 
 // Task 05.05
-const personBook: TPersonBook = {
-  id: 1,
-  author: 'Jessica',
-  category: Category.TypeScript,
-  available: true,
-  email: 'jess@example.com',
-  name: 'Jessica',
-  title: 'Learn TypeScript',
-};
-let o: IOptions = { speed: 55 };
-o = setDefaultConfig(o);
-console.log(o);
+// const personBook: TPersonBook = {
+//   id: 1,
+//   author: 'Jessica',
+//   category: Category.TypeScript,
+//   available: true,
+//   email: 'jess@example.com',
+//   name: 'Jessica',
+//   title: 'Learn TypeScript',
+// };
+// let o: IOptions = { speed: 55 };
+// o = setDefaultConfig(o);
+// console.log(o);

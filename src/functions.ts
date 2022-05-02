@@ -1,7 +1,7 @@
 import { Category } from './enums';
 import { IBook, IOptions } from './interfaces';
 import { TBookOrUndefined, TBookProperties } from './types';
-import RefBook from './encyclopedia';
+import { RefBook } from './classes';
 
 export const getAllBooks = (): readonly IBook[] => {
   const books = <const>[
