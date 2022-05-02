@@ -149,3 +149,7 @@ export const printRefBook = (data: any): void => {
   assertRefBookInstance(data instanceof RefBook);
   data.printItem();
 };
+
+export function purge<T>(inventory: T[]): T[] {
+  return inventory.slice(2);
+}

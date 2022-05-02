@@ -1,6 +1,6 @@
 import { Category } from './enums';
-import { printRefBook, setDefaultConfig } from './functions';
-import { ILibrarian, ILogger, IOptions } from './interfaces';
+import { printRefBook, setDefaultConfig, purge } from './functions';
+import { IBook, ILibrarian, ILogger, IOptions } from './interfaces';
 import { TPersonBook } from './types';
 import { RefBook, UL } from './classes';
 import type { Library } from './classes';
@@ -159,3 +159,15 @@ function showHello(divName: string, name: string) {
 //   name: '1001 books',
 // };
 // console.log(lib2);
+
+// Task 07.01
+const inventory: IBook[] = [
+  { id: 10, title: 'The C Programming Language', author: 'K & R', available: true, category: Category.Software },
+  { id: 11, title: 'Code Complete', author: 'Steve McConnell', available: true, category: Category.Software },
+  { id: 12, title: '8-Bit Graphics with Cobol', author: 'A. B.', available: true, category: Category.Software },
+  { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.Software },
+];
+
+let result: IBook[] | number[] = purge<IBook>(inventory);
+console.log(result);
+result = purge<number>([1, 2, 3]);
