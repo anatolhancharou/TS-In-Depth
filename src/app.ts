@@ -3,6 +3,8 @@ import { printRefBook, setDefaultConfig } from './functions';
 import { ILibrarian, ILogger, IOptions } from './interfaces';
 import { TPersonBook } from './types';
 import { RefBook, UL } from './classes';
+import type { Library } from './classes';
+import { Library as L } from './classes/library';
 
 showHello('greeting', 'TypeScript');
 
@@ -133,18 +135,27 @@ function showHello(divName: string, name: string) {
 // console.log(o);
 
 // Task 06.05
-const flag = true;
-if (flag) {
-  import('./classes')
-    .then(module => {
-      const reader = new module.Reader();
-      console.log(reader);
-    })
-    .catch(err => console.log(err));
-}
+// const flag = true;
+// if (flag) {
+//   import('./classes')
+//     .then(module => {
+//       const reader = new module.Reader();
+//       console.log(reader);
+//     })
+//     .catch(err => console.log(err));
+// }
 
-if (flag) {
-  const module = await import('./classes');
-  const reader = new module.Reader();
-  console.log(reader);
-}
+// if (flag) {
+//   const module = await import('./classes');
+//   const reader = new module.Reader();
+//   console.log(reader);
+// }
+
+// Task 06.06
+// let lib1: Library = new L();
+// let lib2: Library = {
+//   id: 1,
+//   address: 'N/A',
+//   name: '1001 books',
+// };
+// console.log(lib2);
