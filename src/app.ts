@@ -1,7 +1,7 @@
 import { Category } from './enums';
-import { printRefBook, setDefaultConfig, purge, getObjectProperty, getAllBooks } from './functions';
+import { printRefBook, setDefaultConfig, purge, getObjectProperty, getAllBooks, createCustomer } from './functions';
 import { IBook, ILibrarian, ILogger, IOptions, IMagazine } from './interfaces';
-import { TPersonBook } from './types';
+import { TBookRequiredFields, TPersonBook, TUpdatedBook, TСreateCustomerFunctionType } from './types';
 import { RefBook, UL, Shelf } from './classes';
 import type { Library } from './classes';
 import { Library as L } from './classes/library';
@@ -189,5 +189,23 @@ const inventory: IBook[] = [
 // magazineShelf.printTitles();
 // console.log(magazineShelf.find('Five Points'));
 
-const result = getObjectProperty(getAllBooks()[0], 'author');
-console.log(result);
+// const result = getObjectProperty(getAllBooks()[0], 'author');
+// console.log(result);
+
+// Task 07.04
+const bookRequiredFields: TBookRequiredFields = {
+  id: 1,
+  author: 'Tom',
+  available: true,
+  category: Category.JavaScript,
+  markDamaged: null,
+  pages: 100,
+  title: 'JS',
+};
+const updatedBook: TUpdatedBook = {
+  id: 1,
+  author: 'Philip',
+};
+
+const p: Parameters<TСreateCustomerFunctionType> = ['Anna', 25, 'Kyiv'];
+createCustomer(...p);
