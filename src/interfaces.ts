@@ -39,4 +39,8 @@ interface IMagazine {
   publisher: string;
 }
 
-export { IBook, IDamageLogger as ILogger, IPerson, IAuthor, ILibrarian, IOptions, IMagazine };
+interface IShelfItem {
+  title: string;
+}
+
+export { IBook, IShelfItem, IDamageLogger as ILogger, IPerson, IAuthor, ILibrarian, IOptions, IMagazine };

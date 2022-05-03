@@ -1,5 +1,5 @@
 import { Category } from './enums';
-import { printRefBook, setDefaultConfig, purge } from './functions';
+import { printRefBook, setDefaultConfig, purge, getObjectProperty, getAllBooks } from './functions';
 import { IBook, ILibrarian, ILogger, IOptions, IMagazine } from './interfaces';
 import { TPersonBook } from './types';
 import { RefBook, UL, Shelf } from './classes';
@@ -172,17 +172,22 @@ const inventory: IBook[] = [
 // console.log(result);
 // result = purge<number>([1, 2, 3]);
 
-// Task 07.02
-const bookShelf = new Shelf<IBook>();
-inventory.forEach(book => bookShelf.add(book));
-console.log(bookShelf.getFirst());
+// Task 07.02, 07.03
+// const bookShelf = new Shelf<IBook>();
+// inventory.forEach(book => bookShelf.add(book));
+// console.log(bookShelf.getFirst());
 
-const magazines: IMagazine[] = [
-  { title: 'Programming Language Monthly', publisher: 'Code Mags' },
-  { title: 'Literary Fiction Quarterly', publisher: 'College Press' },
-  { title: 'Five Points', publisher: 'GSU' },
-];
+// const magazines: IMagazine[] = [
+//   { title: 'Programming Language Monthly', publisher: 'Code Mags' },
+//   { title: 'Literary Fiction Quarterly', publisher: 'College Press' },
+//   { title: 'Five Points', publisher: 'GSU' },
+// ];
 
-const magazineShelf = new Shelf<IMagazine>();
-magazines.forEach(mag => magazineShelf.add(mag));
-console.log(magazineShelf.getFirst());
+// const magazineShelf = new Shelf<IMagazine>();
+// magazines.forEach(mag => magazineShelf.add(mag));
+// console.log(magazineShelf.getFirst());
+// magazineShelf.printTitles();
+// console.log(magazineShelf.find('Five Points'));
+
+const result = getObjectProperty(getAllBooks()[0], 'author');
+console.log(result);
