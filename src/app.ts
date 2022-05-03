@@ -1,8 +1,8 @@
 import { Category } from './enums';
 import { printRefBook, setDefaultConfig, purge } from './functions';
-import { IBook, ILibrarian, ILogger, IOptions } from './interfaces';
+import { IBook, ILibrarian, ILogger, IOptions, IMagazine } from './interfaces';
 import { TPersonBook } from './types';
-import { RefBook, UL } from './classes';
+import { RefBook, UL, Shelf } from './classes';
 import type { Library } from './classes';
 import { Library as L } from './classes/library';
 
@@ -168,6 +168,21 @@ const inventory: IBook[] = [
   { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.Software },
 ];
 
-let result: IBook[] | number[] = purge<IBook>(inventory);
-console.log(result);
-result = purge<number>([1, 2, 3]);
+// let result: IBook[] | number[] = purge<IBook>(inventory);
+// console.log(result);
+// result = purge<number>([1, 2, 3]);
+
+// Task 07.02
+const bookShelf = new Shelf<IBook>();
+inventory.forEach(book => bookShelf.add(book));
+console.log(bookShelf.getFirst());
+
+const magazines: IMagazine[] = [
+  { title: 'Programming Language Monthly', publisher: 'Code Mags' },
+  { title: 'Literary Fiction Quarterly', publisher: 'College Press' },
+  { title: 'Five Points', publisher: 'GSU' },
+];
+
+const magazineShelf = new Shelf<IMagazine>();
+magazines.forEach(mag => magazineShelf.add(mag));
+console.log(magazineShelf.getFirst());

@@ -34,4 +34,9 @@ interface IOptions {
   speed?: number;
 }
 
-export { IBook, IDamageLogger as ILogger, IPerson, IAuthor, ILibrarian, IOptions };
+interface IMagazine {
+  title: string;
+  publisher: string;
+}
+
+export { IBook, IDamageLogger as ILogger, IPerson, IAuthor, ILibrarian, IOptions, IMagazine };
