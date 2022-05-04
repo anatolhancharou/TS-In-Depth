@@ -224,11 +224,15 @@ function showHello(divName: string, name: string) {
 // obj['printLibrarian']();
 
 // Task 08.03
-const obj = new UL.UniversityLibrarian();
-console.log(obj);
+// const obj = new UL.UniversityLibrarian();
+// console.log(obj);
 // const proto = Object.getPrototypeOf(obj);
 // console.log(proto);
 // proto.assistFaculty = null;
 // proto.teachCommunity = null;
 // obj.assistFaculty = null;
 // obj.teachCommunity = null;
+
+// Task 08.04
+const enc = new RefBook(42, 'Learn TypeScript', 2022, 2);
+enc.printItem();

@@ -31,3 +31,19 @@ export function writable(isWritable: boolean) {
     return descriptor;
   };
 }
+
+export function timeout(ms: number = 0) {
+  return function (target: any, methodName: string, descriptor: PropertyDescriptor): PropertyDescriptor {
+    const originalMethod = descriptor.value;
+
+    descriptor.value = function (...args: any[]): any {
+      if (window.confirm('Are you sure?')) {
+        setTimeout(() => {
+          originalMethod.apply(this, args);
+        }, ms);
+      }
+    };
+
+    return descriptor;
+  };
+}
