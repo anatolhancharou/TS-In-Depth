@@ -218,7 +218,17 @@ function showHello(divName: string, name: string) {
 // UL.UniversityLibrarian.prototype['b'] = 1;
 
 // Task 08.02
+// const obj = new UL.UniversityLibrarian();
+// console.log(obj);
+// obj.name = 'Anna';
+// obj['printLibrarian']();
+
+// Task 08.03
 const obj = new UL.UniversityLibrarian();
 console.log(obj);
-obj.name = 'Anna';
-obj['printLibrarian']();
+// const proto = Object.getPrototypeOf(obj);
+// console.log(proto);
+// proto.assistFaculty = null;
+// proto.teachCommunity = null;
+// obj.assistFaculty = null;
+// obj.teachCommunity = null;

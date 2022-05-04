@@ -23,3 +23,11 @@ export function logger<TFunction extends Function>(target: TFunction): TFunction
 
   return newConstructor as TFunction;
 }
+
+export function writable(isWritable: boolean) {
+  return function (target: any, methodName: string, descriptor: PropertyDescriptor): PropertyDescriptor {
+    console.log(`Method decorator for ${methodName}`);
+    descriptor.writable = isWritable;
+    return descriptor;
+  };
+}
