@@ -161,12 +161,12 @@ function showHello(divName: string, name: string) {
 // console.log(lib2);
 
 // Task 07.01
-const inventory: IBook[] = [
-  { id: 10, title: 'The C Programming Language', author: 'K & R', available: true, category: Category.Software },
-  { id: 11, title: 'Code Complete', author: 'Steve McConnell', available: true, category: Category.Software },
-  { id: 12, title: '8-Bit Graphics with Cobol', author: 'A. B.', available: true, category: Category.Software },
-  { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.Software },
-];
+// const inventory: IBook[] = [
+//   { id: 10, title: 'The C Programming Language', author: 'K & R', available: true, category: Category.Software },
+//   { id: 11, title: 'Code Complete', author: 'Steve McConnell', available: true, category: Category.Software },
+//   { id: 12, title: '8-Bit Graphics with Cobol', author: 'A. B.', available: true, category: Category.Software },
+//   { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.Software },
+// ];
 
 // let result: IBook[] | number[] = purge<IBook>(inventory);
 // console.log(result);
@@ -193,19 +193,26 @@ const inventory: IBook[] = [
 // console.log(result);
 
 // Task 07.04
-const bookRequiredFields: TBookRequiredFields = {
-  id: 1,
-  author: 'Tom',
-  available: true,
-  category: Category.JavaScript,
-  markDamaged: null,
-  pages: 100,
-  title: 'JS',
-};
-const updatedBook: TUpdatedBook = {
-  id: 1,
-  author: 'Philip',
-};
+// const bookRequiredFields: TBookRequiredFields = {
+//   id: 1,
+//   author: 'Tom',
+//   available: true,
+//   category: Category.JavaScript,
+//   markDamaged: null,
+//   pages: 100,
+//   title: 'JS',
+// };
+// const updatedBook: TUpdatedBook = {
+//   id: 1,
+//   author: 'Philip',
+// };
 
-const p: Parameters<TСreateCustomerFunctionType> = ['Anna', 25, 'Kyiv'];
-createCustomer(...p);
+// const p: Parameters<TСreateCustomerFunctionType> = ['Anna', 25, 'Kyiv'];
+// createCustomer(...p);
+
+// Task 08.01
+const obj = new UL.UniversityLibrarian();
+console.log(obj);
+obj.assistCustomer = null;
+// UL.UniversityLibrarian['a'] = 1;
+UL.UniversityLibrarian.prototype['b'] = 1;
