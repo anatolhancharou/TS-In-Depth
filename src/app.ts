@@ -234,5 +234,11 @@ function showHello(divName: string, name: string) {
 // obj.teachCommunity = null;
 
 // Task 08.04
-const enc = new RefBook(42, 'Learn TypeScript', 2022, 2);
-enc.printItem();
+// const enc = new RefBook(42, 'Learn TypeScript', 2022, 2);
+// enc.printItem();
+
+// Task 08.05
+const obj = new UL.UniversityLibrarian();
+obj.name = 'Boris';
+obj.assistCustomer('Anna', 'Learn TS');
+console.log(obj);

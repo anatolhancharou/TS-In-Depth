@@ -47,3 +47,34 @@ export function timeout(ms: number = 0) {
     return descriptor;
   };
 }
+
+export function logParameter(target: any, methodName: string, paramIndex: number): void {
+  const key = `${methodName}_decor_params_indexes`;
+
+  if (Array.isArray(target[key])) {
+    target[key].push(paramIndex);
+  } else {
+    target[key] = [paramIndex];
+  }
+}
+
+export function logMethod(target: any, methodName: string, descriptor: PropertyDescriptor): PropertyDescriptor {
+  const originalMethod = descriptor.value;
+
+  descriptor.value = function (...args: Parameters<typeof originalMethod>): ReturnType<typeof originalMethod> {
+    const key = `${methodName}_decor_params_indexes`;
+    const indexes = target[key];
+
+    if (Array.isArray(indexes)) {
+      args.forEach((arg, index) => {
+        if (indexes.includes(index)) {
+          console.log(`Method: ${methodName}, ParamIndex: ${index}, ParamValue: ${arg}`);
+        }
+      });
+    }
+
+    return originalMethod.apply(this, args);
+  };
+
+  return descriptor;
+}
