@@ -238,6 +238,12 @@ function showHello(divName: string, name: string) {
 // enc.printItem();
 
 // Task 08.05
+// const obj = new UL.UniversityLibrarian();
+// obj.name = 'Boris';
+// obj.assistCustomer('Anna', 'Learn TS');
+// console.log(obj);
+
+// Task 08.06
 const obj = new UL.UniversityLibrarian();
 obj.name = 'Boris';
 obj.assistCustomer('Anna', 'Learn TS');
