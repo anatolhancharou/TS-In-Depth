@@ -10,6 +10,7 @@ import {
   logCategorySearch,
   getBooksByCategoryPromise,
   getTitles,
+  logSearchResults,
 } from './functions';
 import { IBook, ILibrarian, ILogger, IOptions, IMagazine } from './interfaces';
 import { TBookRequiredFields, TPersonBook, TUpdatedBook, TСreateCustomerFunctionType } from './types';
@@ -272,14 +273,19 @@ function showHello(divName: string, name: string) {
 // console.log('End');
 
 // Task 09.02
+// console.log('Begin');
+// getBooksByCategoryPromise(Category.JavaScript)
+//   .then(titles => {
+//     console.log(titles);
+//     // async operation
+//     return Promise.resolve(titles.length);
+//   })
+//   .then(len => console.log(len))
+//   .catch(console.log);
+// getBooksByCategoryPromise(Category.Software).then(console.log).catch(console.log);
+// console.log('End');
+
+// Task 09.03
 console.log('Begin');
-getBooksByCategoryPromise(Category.JavaScript)
-  .then(titles => {
-    console.log(titles);
-    // async operation
-    return Promise.resolve(titles.length);
-  })
-  .then(len => console.log(len))
-  .catch(console.log);
-getBooksByCategoryPromise(Category.Software).then(console.log).catch(console.log);
+logSearchResults(Category.Software).catch(console.log);
 console.log('End');

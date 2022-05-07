@@ -202,3 +202,8 @@ export function getBooksByCategoryPromise(category: Category): Promise<string[]>
 
   return p;
 }
+
+export async function logSearchResults(category: Category) {
+  const result: Awaited<ReturnType<typeof getBooksByCategoryPromise>> = await getBooksByCategoryPromise(category);
+  console.log(result.length);
+}
