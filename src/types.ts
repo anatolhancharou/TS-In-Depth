@@ -1,4 +1,4 @@
-import { createCustomer } from './functions';
+import { createCustomer, getBooksByCategoryPromise } from './functions';
 import { IAuthor, IBook, IPerson } from './interfaces';
 
 // type TBook = {
@@ -30,3 +30,7 @@ type P3 = Param3<fn>;
 type fn1 = (p1: string) => string;
 
 type P4 = Param1<fn1>;
+
+type Unpromisify<T> = T extends Promise<infer R> ? R : never;
+type FRT = ReturnType<typeof getBooksByCategoryPromise>;
+type RT = Unpromisify<FRT>;
