@@ -1,5 +1,5 @@
 import { Category } from './enums';
-import { IBook, IOptions } from './interfaces';
+import { IBook, ICallback, ILibMgrCallback, IOptions } from './interfaces';
 import { TBookOrUndefined, TBookProperties } from './types';
 import { RefBook } from './classes';
 
@@ -160,4 +160,29 @@ export function getObjectProperty<TObject, TKey extends keyof TObject>(
 ): TObject[TKey] | string {
   const value = obj[prop];
   return typeof value === 'function' ? value.name : value;
+}
+
+// export function getBooksByCategory(category: Category, callback: ILibMgrCallback): void {
+export function getBooksByCategory(category: Category, callback: ICallback<string[]>): void {
+  setTimeout(() => {
+    try {
+      const titles = getBookTitlesByCategory(category);
+
+      if (titles.length > 0) {
+        callback(null, titles);
+      } else {
+        throw new Error('No books found');
+      }
+    } catch (err) {
+      callback(err, null);
+    }
+  }, 2000);
+}
+
+export function logCategorySearch(err: Error | null, titles: string[] | null): void {
+  if (err) {
+    console.log(err.message);
+  } else {
+    console.log(titles);
+  }
 }

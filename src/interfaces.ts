@@ -43,4 +43,23 @@ interface IShelfItem {
   title: string;
 }
 
-export { IBook, IShelfItem, IDamageLogger as ILogger, IPerson, IAuthor, ILibrarian, IOptions, IMagazine };
+interface ILibMgrCallback {
+  (err: Error | null, titles: string[] | null): void;
+}
+
+interface ICallback<T> {
+  (err: Error | null, data: T | null): void;
+}
+
+export {
+  IBook,
+  ILibMgrCallback,
+  ICallback,
+  IShelfItem,
+  IDamageLogger as ILogger,
+  IPerson,
+  IAuthor,
+  ILibrarian,
+  IOptions,
+  IMagazine,
+};

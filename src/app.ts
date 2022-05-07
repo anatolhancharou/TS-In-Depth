@@ -1,5 +1,14 @@
 import { Category } from './enums';
-import { printRefBook, setDefaultConfig, purge, getObjectProperty, getAllBooks, createCustomer } from './functions';
+import {
+  printRefBook,
+  setDefaultConfig,
+  purge,
+  getObjectProperty,
+  getAllBooks,
+  createCustomer,
+  getBooksByCategory,
+  logCategorySearch,
+} from './functions';
 import { IBook, ILibrarian, ILogger, IOptions, IMagazine } from './interfaces';
 import { TBookRequiredFields, TPersonBook, TUpdatedBook, TСreateCustomerFunctionType } from './types';
 import { RefBook, UL, Shelf } from './classes';
@@ -250,6 +259,12 @@ function showHello(divName: string, name: string) {
 // console.log(obj);
 
 // Task 08.07
-const enc = new RefBook(42, 'Learn TypeScript', 2022, 2);
-enc.copies = 10;
-console.log(enc);
+// const enc = new RefBook(42, 'Learn TypeScript', 2022, 2);
+// enc.copies = 10;
+// console.log(enc);
+
+// Task 09.01
+console.log('Begin');
+getBooksByCategory(Category.JavaScript, logCategorySearch);
+getBooksByCategory(Category.Software, logCategorySearch);
+console.log('End');
