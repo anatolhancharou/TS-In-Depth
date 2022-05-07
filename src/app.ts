@@ -244,7 +244,12 @@ function showHello(divName: string, name: string) {
 // console.log(obj);
 
 // Task 08.06
-const obj = new UL.UniversityLibrarian();
-obj.name = 'Boris';
-obj.assistCustomer('Anna', 'Learn TS');
-console.log(obj);
+// const obj = new UL.UniversityLibrarian();
+// obj.name = 'Boris';
+// obj.assistCustomer('Anna', 'Learn TS');
+// console.log(obj);
+
+// Task 08.07
+const enc = new RefBook(42, 'Learn TypeScript', 2022, 2);
+enc.copies = 10;
+console.log(enc);

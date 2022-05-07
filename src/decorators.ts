@@ -1,3 +1,4 @@
+// class decorator
 export function sealed(s: string) {
   return function (target: Function): void {
     console.log(`Sealing the constructor ${s}`);
@@ -6,6 +7,7 @@ export function sealed(s: string) {
   };
 }
 
+// class decorator
 export function logger<TFunction extends Function>(target: TFunction): TFunction {
   const newConstructor: Function = function () {
     console.log('Creating new instance');
@@ -24,6 +26,7 @@ export function logger<TFunction extends Function>(target: TFunction): TFunction
   return newConstructor as TFunction;
 }
 
+// method decorator
 export function writable(isWritable: boolean) {
   return function (target: any, methodName: string, descriptor: PropertyDescriptor): PropertyDescriptor {
     console.log(`Method decorator for ${methodName}`);
@@ -32,6 +35,7 @@ export function writable(isWritable: boolean) {
   };
 }
 
+// method decorator
 export function timeout(ms: number = 0) {
   return function (target: any, methodName: string, descriptor: PropertyDescriptor): PropertyDescriptor {
     const originalMethod = descriptor.value;
@@ -48,6 +52,7 @@ export function timeout(ms: number = 0) {
   };
 }
 
+// parameter decorator
 export function logParameter(target: any, methodName: string, paramIndex: number): void {
   const key = `${methodName}_decor_params_indexes`;
 
@@ -58,6 +63,7 @@ export function logParameter(target: any, methodName: string, paramIndex: number
   }
 }
 
+// method decorator
 export function logMethod(target: any, methodName: string, descriptor: PropertyDescriptor): PropertyDescriptor {
   const originalMethod = descriptor.value;
 
@@ -112,6 +118,7 @@ function makeProperty<T>(
   });
 }
 
+// property decorator
 export function format(pref: string = 'Mr./Mrs.') {
   return function (target: any, propertyName: string): void {
     makeProperty(
@@ -121,4 +128,21 @@ export function format(pref: string = 'Mr./Mrs.') {
       value => value,
     );
   };
+}
+
+// accessor decorator
+export function positiveInteger(target: any, propName: string, descriptor: PropertyDescriptor): PropertyDescriptor {
+  const originalSet = descriptor.set;
+
+  descriptor.set = function (value: number) {
+    if (value < 1 || !Number.isInteger(value)) {
+      throw new Error('Invalid value');
+    }
+
+    if (originalSet) {
+      originalSet.call(this, value);
+    }
+  };
+
+  return descriptor;
 }
